@@ -730,7 +730,7 @@ class googleimagesdownload:
     # Download Images
     def download_image(self, image_url, image_format, main_directory, dir_name, count, print_urls, socket_timeout,
                        prefix, print_size, no_numbering, no_download, save_source, img_src, silent_mode, thumbnail_only,
-                       format, ignore_urls):
+                       format, ignore_urls, zero_padding=None):
         if not silent_mode:
             if print_urls or no_download:
                 print("Image URL: " + image_url)
@@ -800,6 +800,8 @@ class googleimagesdownload:
                 if no_numbering:
                     path = main_directory + "/" + dir_name + "/" + prefix + image_name
                 else:
+                    if zero_padding:
+                        count = f'{count:0{zero_padding}}'
                     path = main_directory + "/" + dir_name + "/" + prefix + str(count) + "." + image_name
 
                 try:
@@ -907,7 +909,7 @@ class googleimagesdownload:
                     arguments['print_urls'], arguments['socket_timeout'], arguments['prefix'], arguments['print_size'],
                     arguments['no_numbering'], arguments['no_download'], arguments['save_source'],
                     object['image_source'], arguments["silent_mode"], arguments["thumbnail_only"], arguments['format'],
-                    arguments['ignore_urls'])
+                    arguments['ignore_urls'], zero_padding=6)
                 if not arguments["silent_mode"]:
                     print(download_message)
                 if download_status == "success":
