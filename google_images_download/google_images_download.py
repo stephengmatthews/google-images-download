@@ -1094,6 +1094,9 @@ class googleimagesdownload:
                         dir_name = search_term + (
                             '-' + arguments['color'] if arguments['color'] else '')  # sub-directory
 
+                    # remove leading and trailing whitespace
+                    dir_name = dir_name.strip()
+
                     if not arguments["no_download"]:
                         self.create_directories(main_directory, dir_name, arguments['thumbnail'],
                                                 arguments['thumbnail_only'])  # create directories in OS
