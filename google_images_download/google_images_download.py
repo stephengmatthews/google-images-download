@@ -1121,12 +1121,13 @@ class googleimagesdownload:
 
                     # dumps into a json file
                     if arguments['extract_metadata']:
+                        log_dir = os.path.join(main_directory, "_logs")
                         try:
-                            if not os.path.exists("logs"):
-                                os.makedirs("logs")
+                            if not os.path.exists(log_dir):
+                                os.makedirs(log_dir)
                         except OSError as e:
                             print(e)
-                        json_file = open("logs/" + search_keyword[i] + ".json", "w")
+                        json_file = open(os.path.join(log_dir, search_keyword[i] + ".json"), "w")
                         json.dump(items, json_file, indent=4, sort_keys=True)
                         json_file.close()
 
