@@ -1097,6 +1097,9 @@ class googleimagesdownload:
                         dir_name = search_term + (
                             '-' + arguments['color'] if arguments['color'] else '')  # sub-directory
 
+                    # remove leading and trailing whitespace
+                    dir_name = dir_name.strip()
+
                     if not arguments["no_download"]:
                         self.create_directories(main_directory, dir_name, arguments['thumbnail'],
                                                 arguments['thumbnail_only'])  # create directories in OS
@@ -1129,7 +1132,7 @@ class googleimagesdownload:
                                 os.makedirs("logs")
                         except OSError as e:
                             print(e)
-                        json_file = open("logs/" + search_keyword[i] + ".json", "w")
+                        json_file = open("logs/" + search_keyword[i].strip() + ".json", "w")
                         json.dump(items, json_file, indent=4, sort_keys=True)
                         json_file.close()
 
